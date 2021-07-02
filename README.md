@@ -24,10 +24,15 @@ Read the Wikipedia page on Bingo.
 Implement a method **write(String outputFile)** that writes a random Bingo card configuration and a stream of random numbers (which you will generate by the shuffle() method below) between 1 and 75 to the output file. The first five lines of the output represent the Bingo card. Each line is a row of five integers separated by spaces. The third number in the third line, the free square, is always contain the number 0. Next will come seventy five integers, all in one line, in random order. For example,
 
 3 18 34 60 75
+
 12 26 38 47 73
+
  2 23  0 49 66
+ 
 15 21 43 58 67
+
  6 22 31 56 62
+ 
 59 69 7 39 32 44 27 53 21 25 28 9 17 61 12 37 5 55 [et cetera, until all numbers have been listed]
 
 The first column in the Bingo card configuration must contain only integers between 1 and 15; the second column numbers are all between 16 and 30, the third are 31 to 45, the fourth 46-60, and the fifth 61-75. There are no duplicate numbers on a Bingo card.
