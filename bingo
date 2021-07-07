@@ -1,0 +1,27 @@
+package bingodriver;
+import java.util.*;
+public class Bingodriver {
+
+	public static void main(String[] args) 
+	{
+		int[][]bingochart=new int[5][5];
+		Random rand=new Random();
+		
+		PrintWriter outputFile=new PrintWriter("");
+		
+
+	}
+	public write() {
+		
+	}
+	public shuffle() {
+		
+	}
+	public read() {
+		
+	}
+	public playgame() {
+		
+	}
+	
+}
