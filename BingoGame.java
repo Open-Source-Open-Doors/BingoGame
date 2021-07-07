@@ -20,8 +20,7 @@ public class BingoGame
     
   int column;
   int row;
-  //int randomNumber;
-     
+      
  
   public static void main(String[] args) throws IOException 
   {
@@ -119,4 +118,19 @@ public class BingoGame
     }
     return true;
   }
+ 
+  /**
+  * This method returns the first integer from the stream array that
+  * gives you the earliest winning condition.
+  *
+  * - all the spots in a column are marked
+  * - all the spots in a row are marked
+  * - all the spots in either of the two diagonals are marked
+  * - all four corner squares are marked
+  */
+  public int playGame()
+  {
+      throw new RuntimeException ("You need to implement this method");
+	 }
+ 
 }
