@@ -10,10 +10,13 @@ public class Bingo
         int count = 0;
 		BingoCard game = new BingoCard();
 		game.write("test1.txt");
-		game.read("test2.txt");
-		int x = game.playGame();
-		System.out.println("the winning number is " + x);
+       
+		//game.read("test2.txt");
+		//int x = game.playGame();
+		//System.out.println("the winning number is " + x);
         
+       
+       /*
        //Attempts to get input from the file
         try{
             fin = new Scanner(new File("test1.txt"));   
@@ -32,10 +35,12 @@ public class Bingo
         
         fin.close();
        
-        /*for(int i = 0; i < count; i++) {
+        for(int i = 0; i < count; i++) {
             System.out.println(game.stream[i]);
-        }*/
-            
-            
+        }
+        
+        */
+       
+                 
 	}
 }
