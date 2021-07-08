@@ -4,6 +4,91 @@ import java.io.*;
 
 
 public class Bingo{
+    ArrayList<Integer> list = new ArrayList<>();
+
+
+
+    /**
+     * This method writes a random Bingo card configuration and a stream of random
+     * number between 1 and 75 to the output file.
+     * <p>
+     * The first column in the table contains only integers between 1 and 15,
+     * the second column numbers are all between 16 and 30, the third are 31 to 45,
+     * the fourth 46-60, and the fifth 61-75.
+     * <p>
+     * There are no duplicate numbers on a Bingo card.
+     */
+    public void write(String outputFile) throws IOException {
+        try {
+            File myObj = new File("output.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        }catch(RuntimeException e){
+            System.out.println("You need to implement this method");
+            e.printStackTrace();
+        }
+
+        //throw new RuntimeException("You need to implement this method");
+    }
+
+    /**
+     * Shuffles the list of numbers
+     * Prevents repetition
+     */
+    public void shuffle(ArrayList<Integer> list) throws RuntimeException {
+        //converts arraylist to an array arrgh[]
+        Integer[] arrgh = new Integer[list.size()];
+        arrgh = list.toArray(arrgh);
+        int i = 0;
+        int j = 0;
+        int temp = Integer.parseInt(null);
+
+        for (i = arrgh.length - 1; i > 0; i -= 1) {
+            j = (int) Math.floor(Math.random() * (i + 1));
+            temp = arrgh[i];
+            arrgh[i] = arrgh[j];
+            arrgh[j] = temp;
+        }
+
+
+    }
+
+
+    /**
+     * This method reads a given inputFile that contains a Bingo card configuration and
+     * a stream of numbers between 1 and 75.
+     * .
+     * A Bingo card configuration is stored in the card array.
+     * A list of 75 integers is stored in the stream array.
+     */
+    public void read(String inputFile) throws IOException {
+        throw new RuntimeException("You need to implement this method");
+    }
+
+
+    /**
+     * This method returns the first integer from the stream array that
+     * gives you the earliest winning condition.
+     * <p>
+     * - all the spots in a column are marked
+     * - all the spots in a row are marked
+     * - all the spots in either of the two diagonals are marked
+     * - all four corner squares are marked
+     */
+    public int playGame() throws RuntimeException {
+
+        return 0;
+    }
+
+    public static int generateMinMax(int min, int max) {
+
+        int range = (max - min) + 1;
+
+        return (int)(Math.random() * range) + min;
+    }
     public static void main(String[] args) throws IOException {
 
 
@@ -45,99 +130,42 @@ public class Bingo{
         int min4 = 61;
         int range4 = max4 - min4 + 1;
         for (int i = 0; i < arr.length; i++) {
+
             for (int j = 0; j < arr[i].length; j++) {
                 arr[2][2]= 0;
                 arr[0][j] = ((int)(Math.random()*15));
                 arr[1][j] = ((int)(Math.random()*range))+min;
                 arr[2][j] = ((int)(Math.random()*range2))+min2;
-                arr[3][j] = ((int)(Math.random()*range2))+min3;
-                arr[4][j] = ((int)(Math.random()*range2))+min4;
-            }
+                arr[3][j] = ((int)(Math.random()*range3))+min3;
+                arr[4][j] = ((int)(Math.random()*range4))+min4;
 
-        }
-        //Helps display the 2d array in the console log
-        for (int[] a : arr)
-        {
-            for (int i : a)
+                int num = arr[i][j];
+                for (int z = j + 1; z < arr.length; z++)
+                {
+                    if (num == arr[i][z]) {
+
+                        //shuffle is giving me issues 7/8/21
+                        game.shuffle()
+                    }
+                }
+
+            }
+            //Helps display the 2d array in the console log
+            for (int[] a : arr)
             {
-                System.out.print(i + "\t");
-            } System.out.println("\n");
-        }
-
-        // System.out.println("Random numbers = "+Arrays.deepToString(arr));
-
-    }
-
-
-
-    /**
-     * This method writes a random Bingo card configuration and a stream of random
-     * number between 1 and 75 to the output file.
-     * <p>
-     * The first column in the table contains only integers between 1 and 15,
-     * the second column numbers are all between 16 and 30, the third are 31 to 45,
-     * the fourth 46-60, and the fifth 61-75.
-     * <p>
-     * There are no duplicate numbers on a Bingo card.
-     */
-    public void write(String outputFile) throws IOException {
-        try {
-            File myObj = new File("output.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
+                for (int b : a)
+                {
+                    System.out.print(b + "\t");
+                } System.out.println("\n");
             }
-        }catch(RuntimeException e){
-            System.out.println("You need to implement this method");
-            e.printStackTrace();
+
+            // System.out.println("Random numbers = "+Arrays.deepToString(arr));
+
         }
-
-        //throw new RuntimeException("You need to implement this method");
-    }
-
-    /**
-     * Shuffles the list of numbers
-     */
-    public void shuffle(ArrayList<Integer> list) {
-        //swaps k-th index with a random index
-
-        throw new RuntimeException("You need to implement this method");
-    }
-
-
-    /**
-     * This method reads a given inputFile that contains a Bingo card configuration and
-     * a stream of numbers between 1 and 75.
-     * .
-     * A Bingo card configuration is stored in the card array.
-     * A list of 75 integers is stored in the stream array.
-     */
-    public void read(String inputFile) throws IOException {
-        throw new RuntimeException("You need to implement this method");
-    }
-
-
-    /**
-     * This method returns the first integer from the stream array that
-     * gives you the earliest winning condition.
-     * <p>
-     * - all the spots in a column are marked
-     * - all the spots in a row are marked
-     * - all the spots in either of the two diagonals are marked
-     * - all four corner squares are marked
-     */
-    public int playGame() {
-        throw new RuntimeException("You need to implement this method");
-    }
-
-    public static int generateMinMax(int min, int max) {
-        int range = (max - min) + 1;
-        return (int)(Math.random() * range) + min;
-    }
-
 
 
 }
+}
+
 
 
