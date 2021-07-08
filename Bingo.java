@@ -1,39 +1,41 @@
+import java.io.*;
 import java.util.*;
 
-
-public class Bingo{
-
-public static void main(String[] args){
-    
-        //Arralylist represents the bingo card
-        List<List<Integer>> card = new ArrayList<>();
-    
-    
-        //Prints the random numbers into all 5 rows
-        for(int k = 0, low = 0; k < 5; k++, low += 15 ){
+public class Bingo
+{
+   public static void main (String[] args) throws IOException
+   {
+       
+        Scanner fin = null;  //Input for the file
+        int count = 0;
+		BingoCard game = new BingoCard();
+		game.write("test1.txt");
+		game.read("test2.txt");
+		int x = game.playGame();
+		System.out.println("the winning number is " + x);
+        
+       //Attempts to get input from the file
+        try{
+            fin = new Scanner(new File("test1.txt"));   
+        }
+               
+        //If their is an issue with reaching the file
+        catch(IOException e){
+            System.out.println("Could not access file");
+            System.exit(0);
+        }
+               
+        //Saves the text from the file
+        while(fin.hasNextLine()){
             
-            //nums is the list integers that will be added into the card arraylist
-            List<Integer> nums = new ArrayList<>();
-                card.add(nums);              
-            
-            
-            
-            for(int l = 1; l <= 15; l++){
-                nums.add(low + l);          //Adds all the numbers into the nums list until reaches 75 integers 
-                Collections.shuffle(nums);  //Shuffles the arrangement of numbers
-            }
         }
         
-        //Shows the bingo card
-        System.out.println("B\t|\tI\t|\tN\t|\tG\t|\tO");
-        for( int i = 0; i < 5; i++){
-            for(int j = 0; j < 5; j++){
-               System.out.printf("%2d", card.get(j).get(i));
-                if(j<4) System.out.printf("\t|\t");
-            }
-            System.out.println();
-        }
-    
-   }
-
+        fin.close();
+       
+        /*for(int i = 0; i < count; i++) {
+            System.out.println(game.stream[i]);
+        }*/
+            
+            
+	}
 }
