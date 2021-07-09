@@ -1,0 +1,170 @@
+package bingodriver;
+import java.util.*;
+import java.io.*;
+public class Bingo
+{
+	private Random rand = new Random();
+	private int[][] card;       //Bingo card configuration
+	private int[] stream;       //list of 75 integers
+	private boolean[][] marks;  //simulates placing chips on a Bingo card
+	public Bingo()
+	{
+		card   = new int[5][5];
+		stream = new int[75];
+		marks  = new boolean[5][5];
+	}
+
+	public void write(String outputFile) 
+	{
+			int r=0;
+			Random rand=new Random();
+			ArrayList <Integer>cardNumUsed=new ArrayList<Integer>();
+			ArrayList<Integer>streamNumbers=new ArrayList<Integer>();
+			
+			 boolean inside=false;
+			 boolean correct=false;
+			 
+			for(int row = 0; row < card.length; row++)
+			 {
+			
+				 
+			        while(!inside)
+			        {
+			        	r = (int)(Math.random()*15)+1;
+			            if(!cardNumUsed.contains(r))
+			            {
+			            	inside = true;
+			            	cardNumUsed.add(r);
+			            	
+			               
+			            }
+			        }
+			      card[row][0]=r;
+			      inside=false;
+			 }
+			 for(int row = 0; row < card.length; row++)
+			 {
+							  
+			        while(!inside)
+			        {
+			        	r= (int)(Math.random()*15)+16;
+			            if(!cardNumUsed.contains(r))
+			            {
+			                inside = true;
+			                cardNumUsed.add(r);
+			            }
+			        }
+			        
+			        
+			      card[row][1]=r;
+			      inside=false;
+			 }
+			 for(int row = 0; row < card.length; row++)
+			 {
+			
+			 
+			        while(!inside)
+			        {
+			        	r = (int)(Math.random()*15)+31;
+			            if(!cardNumUsed.contains(r))
+			            {
+			                inside = true;
+			                cardNumUsed.add(r);
+			            }
+			        }
+			      card[row][2]=r;
+			      inside=false;
+			 }
+			 for(int row = 0; row < card.length; row++)
+			 {
+				
+						 
+			        while(!inside)
+			        {
+			        	r = (int)(Math.random()*15)+46;
+			            if(!cardNumUsed.contains(r))
+			            {
+			                inside = true;
+			                cardNumUsed.add(r);
+			            }
+			        }
+			      card[row][3]=r;
+			      inside=false;
+			 }
+			 for(int row = 0; row < card.length; row++)
+			 {
+					 
+			        while(!inside)
+			        {
+			        	r= (int)(Math.random()*15)+61;
+			            if(!cardNumUsed.contains(r))
+			            {
+			                inside = true;
+			                cardNumUsed.add(r);
+			            }
+			        }
+			      card[row][4]=r;
+			      inside=false;
+			 }
+			 
+			 card[2][2]=0;
+			 
+			  for(int row=0;row<card.length;row++)
+			  {
+		            for(int col=0;col<card[row].length;col++)
+		            {
+		                System.out.print(card[row][col]+ "\t");
+		            }
+		 
+		            System.out.println();
+			  }
+			
+			  int s=0;
+				 for (int i=0;i<75;i++) 
+				 {
+					  
+					 while(!correct) 
+					 {
+						 s=rand.nextInt(75)+1;
+						 if (!streamNumbers.contains(s)) 
+						 {
+							 correct=true;
+							 streamNumbers.add(s);
+						 }
+								 
+					 }
+					 stream[i]=s;
+					 correct=false;
+				 }
+				for (int i=0;i<stream.length;i++) {
+					System.out.print(stream[i]+" ");
+				}
+			  
+		
+		
+		
+	}
+
+   public void shuffle(ArrayList<Integer> list)
+   {
+		
+	   Random num=new Random();
+	   int x=0;
+	   for(int i=0;i<list.size();i++) 
+	   {
+		   x=num.nextInt(75)+1;
+		   list.set(i, x);
+	   }
+		
+   }
+
+   public void read(String inputFile) 
+   {
+		
+	}
+
+   public int playGame()
+   {
+		
+	}
+}
