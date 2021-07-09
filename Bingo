@@ -100,6 +100,25 @@ public class Bingo
 		      card[row][4]=r;
 		      inside=false;
 		 }
+		 
+		  card[2][2]=0;
+		 
+		 int s=0;
+		 for (int i=0;i<75;i++) 
+		 {
+			  boolean valid=false;
+			 while(!false) 
+			 {
+				 s=rand.nextInt(75)+1;
+				 if (!streamNumbers.contains(s)) 
+				 {
+					 valid=true;
+					 streamNumbers.add(s);
+				 }
+						 
+			 }
+			 stream[i]=s;
+		 }
 		
 		
 		
