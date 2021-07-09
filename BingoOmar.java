@@ -163,7 +163,9 @@ public class BingoOmar
 	   for(int i=0;i<list.size();i++) 
 	   {
 		   x=num.nextInt(75)+1;
-		   list.set(i,x);
+
+		   //list[i]=list[x];
+		   list.set(i,list.get(x));
 	   }
 		
    }
