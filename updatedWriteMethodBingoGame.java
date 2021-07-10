@@ -1,21 +1,24 @@
 
 import java.util.*;
 import java.io.*;
+import java.util.stream.Collectors;
+
 public class updatedWriteMethodBingoGame
 {
 	private Random rand = new Random();
 	private int[][] card;       //Bingo card configuration
 	private int[] stream;       //list of 75 integers
 	private boolean[][] marks;  //simulates placing chips on a Bingo card
-	public updatedWriteMethodBingoGame()
-	{
+
+
+	public updatedWriteMethodBingoGame()  {
 		card   = new int[5][5];
 		stream = new int[75];
 		marks  = new boolean[5][5];
 	}
 
 	public void write(String outputFile) throws IOException {
-		FileWriter writer = new FileWriter("output.txt");
+		FileWriter writer = new FileWriter(outputFile);
 		BufferedWriter buffer = new BufferedWriter(writer);
 
 		int r=0;
@@ -120,50 +123,86 @@ public class updatedWriteMethodBingoGame
 		 
 		            buffer.newLine();
 			  }
-			
-			  int s=0;
-				 for (int i=0;i<75;i++) 
-				 {
-					  
-					 while(!correct) 
-					 {
-						 s=rand.nextInt(75)+1;
-						 if (!streamNumbers.contains(s)) 
-						 {
-							 correct=true;
-							 streamNumbers.add(s);
-						 }
-								 
-					 }
-					 stream[i]=s;
-					 correct=false;
-				 }
-				for (int i=0;i<stream.length;i++) {
-					buffer.write(stream[i]+" ");
+		int s=0;
+		for (int i=0;i<75;i++)
+		{
+
+			while(!correct)
+			{
+				s=rand.nextInt(75)+1;
+				if (!streamNumbers.contains(s))
+				{
+					correct=true;
+					streamNumbers.add(s);
 				}
-			  
-		
+
+			}
+			stream[i]=s;
+			correct=false;
+		}
+
+				//My for loop
+				//for (int i=0;i<stream.length;i++) {
+				//buffer.write(cardNumUsed+" ");
+				//}
+
+                 //Omer's For loop
+				//for (int i=0;i<stream.length;i++) {
+				//buffer.write(stream[i]+" ");
+				//}
+
+		shuffle(streamNumbers);
+		buffer.write(streamNumbers.stream()
+				.map(Object::toString)
+				.collect(Collectors.joining(" ")));
 		
 		buffer.close();
 	}
 
-   public void shuffle(ArrayList<Integer> list)
-   {
-		
-	   Random num=new Random();
-	   int x=0;
-	   for(int i=0;i<list.size();i++) 
-	   {
-		   x=num.nextInt(75)+1;
-		   list.set(i, x);
-	   }
-		
-   }
+	public void shuffle(ArrayList<Integer> list) throws RuntimeException, IOException {
+		FileWriter writer = new FileWriter("output.txt");
+		BufferedWriter buffer = new BufferedWriter(writer);
+
+		// Creating a object for Random class
+		Random r = new Random();
+		int arr[] = new int[0];
+		int n =0;
+		// Start from the last element and swap one by one. We don't
+		// need to run for the first element that's why i > 0
+		for (int i = n-1; i > 0; i--) {
+
+			// Pick a random index from 0 to i
+			int j = r.nextInt(i+1);
+
+			// Swap arr[i] with the element at random index
+			int temp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = temp;
+		}
+
+
+		}
+
 
    public void read(String inputFile) 
    {
+	   try {
+		   FileReader reader = new FileReader(inputFile);
+		   BufferedReader bufferedReader = new BufferedReader(reader);
+
+		   String line;
+
+		   while ((line = bufferedReader.readLine()) != null) {
+			   System.out.println(line);
+		   }
+		   reader.close();
+
+	   } catch (IOException e) {
+		   e.printStackTrace();
+	   }
+   }
 		
-	}
+
 
    public int playGame()
    {
@@ -190,6 +229,8 @@ public class updatedWriteMethodBingoGame
 		//uses write method to write into
 		updatedWriteMethodBingoGame game = new updatedWriteMethodBingoGame();
 		game.write("output.txt");
+		game.read("C:\\Users\\lolas\\IdeaProjects\\ODXOS\\src\\Test 1.txt");
+		//game.shuffle();
 
 		//row x column
 
