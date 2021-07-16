@@ -11,7 +11,7 @@ public class BingoGame
   private boolean[][] marks;  //simulates placing chips on a Bingo card
 
   
-  public BingoGame()
+  public BingoGame()  
   {
     card   = new int[5][5];
     stream = new int[75];
@@ -230,60 +230,66 @@ public class BingoGame
   * 
   */
   public int playGame() throws IOException
-  {
-    /*
-    if(card[row][column] == x) 
-        {
-          marks[row][column] = true;
-          break;
-        }
-        */
-    
-    int x = 0;
-      
-    /*Iterate through card */
-    for(int row = 0; row < card.length; row++) 
+  {   
+    int x = 0; 
+
+    /* Iterate through the stream array (1 - 75) */
+    for (int count = 0; count < 75; count++) 
     {
-      /* Iterate through row/column */
-      for(int column = 0; column < card[0].length; column++) 
-      {        
-        /* Checks for marks in a rows (horizontal) */
-        if(card[row][0] == 0 && card[row][1] == 0 && card[row][3] == 0 && card[row][4] == 0)
+      /* Iterate through the card 
+       *  Iterate through row/column */
+      for (int row = 0; row < 5; row++) 
+      {
+        for (int column = 0; column < 5; column++) 
         {
-          marks[row][column] = true;
-          return x;
-        }
-        
-        /* checks for marks in a column (vertical) */
-        else if(card[0][column] == 0 && card[1][column] == 0 && card[3][column] == 0 && card[4][column] == 0)
-        {
-          marks[row][column] = true;
-          return x;
-        }
-        
-        /* checks for marks in the first diagonal from left to right */
-        else if(card[0][0] == 0 && card[1][1] == 0 && card[3][3] == 0 && card[4][4] == 0)
-        {  
-          marks[row][column] = true;
-          return x;
-        }
-        
-        /* checks for marks in the first diagonal from right to left */
-        else if(card[0][4] == 0 && card[1][3] == 0 && card[3][1] == 0 && card[4][0] == 0)
-        {
-          marks[row][column] = true;
-          return x;
-        }
-        
-        /* checks the four the corners to see if there marked */
-        if(card[0][0] == 0 && card[4][0] == 0 && card[0][4] == 0 && card[4][4] == 0)
-        {
-          marks[row][column] = true;
-          return x;
+          if (stream[count] == card[row][column])  
+          {
+            return stream[0];
+          }
         }
       }
-    }
-    
+      
+      /* Checks the four corners within the array to see if there are marks */
+      if (card[0][0] == card[0][4] && card[4][0]==card[4][4]&& card[0][0] == card[4][4])
+      {
+        return stream[count];
+      }
+
+        /* Checks columns  within the array */
+        for (int row = 0; row < 5; row++) 
+        {
+          if (card[0][row]== card[1][row] && card[2][row] == card[3][row] && card[4][row]==card[0][row] 
+                && card[4][row] == card[2][row])
+          {
+            return stream[count];
+          }
+        }
+        
+        /* Checks rows  within the array */
+        for (int row = 0; row < 5; row++) 
+        {
+          if (card[row][0] == card[row][1] && card[row][2] == card[row][3] && 
+              card[row][4] == card[row][0] && card[row][4] == card[row][2])
+          {
+            return stream[count];
+          }
+        }
+        
+        /* Checks the diagonals within the array (left-to-right) */
+        if (card[0][0] == card[1][1] && card[2][2] == card[3][3] && card[4][4] == card[1][1]
+              && card[4][4] == card[2][2])
+        {
+          return stream[count];
+        }
+
+        if (card[0][0] == card[1][1] && card[2][2] == card[3][3] && card[4][4] == card[1][1] &&
+            card[4][4 ]== card[2][2]) 
+        {
+          return stream[count];
+        }
+        return -1;
+        }
+      
     List<List<Integer>> list = Arrays.stream(stream).mapToObj(Arrays::asList).collect(Collectors.toList());
 
     Optional<List<Integer>> first = list.stream().findFirst();
@@ -297,8 +303,9 @@ public class BingoGame
     {
       System.out.println("no value?");
     }
-    return x;
+    return stream[0];
   }
+
    
   public static void main(String[] args) throws IOException 
   {
